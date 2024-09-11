@@ -1,0 +1,17 @@
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Business.deps.json
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Business.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Business.pdb
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.AssemblyInfo.cs
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\refint\MovieApp.Business.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.pdb
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\ref\MovieApp.Business.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Core.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Data.dll
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Data.pdb
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\bin\Debug\net8.0\MovieApp.Core.pdb
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.Business.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Business\obj\Debug\net8.0\MovieApp.EB28DBE0.Up2Date

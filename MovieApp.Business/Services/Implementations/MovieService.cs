@@ -1,0 +1,97 @@
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using MovieApp.Business.DTOs.MovieDTOs;
+using MovieApp.Business.Exceptions.CommonExceptions;
+using MovieApp.Business.Services.Interfaces;
+using MovieApp.Core.Entities;
+using MovieApp.Core.Repos;
+using System.Linq.Expressions;
+
+namespace MovieApp.Business.Services.Implementations;
+
+public class MovieService : IMovieService
+{
+    private readonly IMovieRepo _movieRepo;
+    private readonly IMapper _mapper;
+
+    public MovieService(IMovieRepo movieRepo, IMapper mapper)
+    {
+        _movieRepo = movieRepo;
+        _mapper = mapper;
+    }
+    public async Task<MovieGetDto> CreateAsync(MovieCreateDto dto)
+    {
+        //Movie movie = new Movie()
+        //{
+        //    Title = dto.Title,
+        //    Description = dto.Description,
+        //    CreatedDate = DateTime.Now,
+        //    UpdatedDate = DateTime.Now,
+        //    IsDeleted = dto.Isdeleted,
+        //};asagida mapperle avtomatik cevirmisik deye bu hisseye ehtiyac yoxdur.
+
+        Movie movie = _mapper.Map<Movie>(dto);
+        movie.CreatedDate = DateTime.Now;
+        movie.UpdatedDate = DateTime.Now;        
+
+        await _movieRepo.CreateAsync(movie);
+        await _movieRepo.CommitAsync();
+
+        MovieGetDto getDto = new MovieGetDto(movie.Id, movie.Description, movie.Title, movie.IsDeleted, movie.CreatedDate, movie.UpdatedDate);
+        return getDto;
+    }
+    public async Task DeleteAsync(int id)
+    {
+        if (id < 1) throw new NotValidIdException();
+        var data = await _movieRepo.GetByIdAsync(id);
+        if (data == null) throw new EntityNotFoundException(404, "Not Found");
+        _movieRepo.DeleteAsync(data);
+        await _movieRepo.CommitAsync();
+    }
+
+    public async Task<ICollection<MovieGetDto>> GetByExpressionAsync(Expression<Func<Movie, bool>>? expression = null, bool asNoTracking = false, params string[] includes)
+    {
+        var datas = await _movieRepo.GetByExpressionAsync(expression, asNoTracking, includes).ToListAsync();
+        if (datas == null) throw new EntityNotFoundException(404, "Not Found");
+
+        ICollection<MovieGetDto> dtos = datas.Select(data => new MovieGetDto(data.Id, data.Description, data.Title, data.IsDeleted, data.CreatedDate, data.UpdatedDate)).ToList();
+        return dtos;
+
+    }
+    public async Task<MovieGetDto> GetByIdAsync(int id)
+    {
+        if (id < 1) throw new NotValidIdException();
+        var data = await _movieRepo.GetByIdAsync(id);
+        if (data == null) throw new EntityNotFoundException(404, "Not Found");
+        
+        //MovieGetDto dto = new MovieGetDto(data.Id, data.Description, data.Title, data.IsDeleted, data.CreatedDate, data.UpdatedDate);
+
+        MovieGetDto dto = _mapper.Map<MovieGetDto>(data);
+
+        return dto;
+    }
+
+    public async Task<MovieGetDto> GetSingleByExpressionAsync(Expression<Func<Movie, bool>>? expression = null, bool asNoTracking = false, params string[] includes)
+    {
+        var data = await _movieRepo.GetByExpressionAsync(expression, asNoTracking, includes).FirstOrDefaultAsync();
+        if (data == null) throw new EntityNotFoundException(404, "Not Found");
+
+        MovieGetDto dto = new MovieGetDto(data.Id, data.Description, data.Title, data.IsDeleted, data.CreatedDate, data.UpdatedDate);
+
+        return dto;
+    }
+
+    public async Task UpdateAsync(int? id, MovieUpdateDto dto)
+    {
+        if (id < 1 || id is null) throw new NotValidIdException();
+        var data = await _movieRepo.GetByIdAsync((int)id);
+        if (data == null) throw new EntityNotFoundException(404, "Not Found");
+
+        _mapper.Map(dto,data);
+
+        data.UpdatedDate = DateTime.Now;
+
+        await _movieRepo.CommitAsync();
+
+    }
+}

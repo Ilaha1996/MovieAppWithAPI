@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|c:\\users\\user\\source\\repos\\pb201movieapp\\movieapp.business\\services\\implementations\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|solutionrelative:movieapp.business\\services\\implementations\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieAppAPI.csproj|c:\\users\\user\\source\\repos\\pb201movieapp\\movieappapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieAppAPI.csproj|solutionrelative:movieappapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|c:\\users\\user\\source\\repos\\pb201movieapp\\movieapp.business\\mappingprofiles\\mapprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|solutionrelative:movieapp.business\\mappingprofiles\\mapprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MapProfile.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\MappingProfiles\\MapProfile.cs",
+              "RelativeDocumentMoniker": "MovieApp.Business\\MappingProfiles\\MapProfile.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\MappingProfiles\\MapProfile.cs",
+              "RelativeToolTip": "MovieApp.Business\\MappingProfiles\\MapProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T08:17:14.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "RelativeDocumentMoniker": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "RelativeToolTip": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFMAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T19:13:53.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieAppAPI\\Program.cs",
+              "RelativeDocumentMoniker": "MovieAppAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieAppAPI\\Program.cs",
+              "RelativeToolTip": "MovieAppAPI\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T18:52:57.187Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
