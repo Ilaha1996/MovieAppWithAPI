@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
 namespace MovieApp.Business.DTOs.MovieDTOs;
-public record MovieUpdateDto(string Title, string Description,bool IsDeleted/*double CostPrice, double SalePrice*/);
+public record MovieUpdateDto(string Title, string Description,bool IsDeleted, int GenreId/*double CostPrice, double SalePrice*/);
 
 public class MovieUpdateDtoValidator:AbstractValidator<MovieUpdateDto>
 {
@@ -17,6 +17,8 @@ public class MovieUpdateDtoValidator:AbstractValidator<MovieUpdateDto>
             .MaximumLength(800).WithMessage("Maximum length must be 800");
 
         RuleFor(x => x.IsDeleted).NotNull();
+
+        RuleFor(x => x.GenreId).NotNull().NotEmpty();
 
         //RuleFor(x => x).Custom((x, context) =>
         //{

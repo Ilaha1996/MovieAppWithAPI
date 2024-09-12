@@ -4251,11 +4251,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\MovieApp.Business.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\MovieApp.Business.csproj",
       "projectName": "MovieApp.Business",
-      "projectPath": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\MovieApp.Business.csproj",
+      "projectPath": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\MovieApp.Business.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Business\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4273,8 +4273,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Data\\MovieApp.Data.csproj": {
-              "projectPath": "C:\\Users\\USER\\source\\repos\\PB201MovieApp\\MovieApp.Data\\MovieApp.Data.csproj"
+            "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Data\\MovieApp.Data.csproj": {
+              "projectPath": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Data\\MovieApp.Data.csproj"
             }
           }
         }

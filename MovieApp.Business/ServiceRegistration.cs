@@ -9,5 +9,6 @@ public static class ServiceRegistration
     public static void AddServices(this IServiceCollection services)
     { 
         services.AddScoped<IMovieService,MovieService>();
+        services.AddScoped<IGenreService, GenreService>();
     }
 }

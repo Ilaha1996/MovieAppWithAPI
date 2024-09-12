@@ -2,7 +2,7 @@
 
 namespace MovieApp.Business.DTOs.MovieDTOs;
 
-public record MovieCreateDto(string Title,string Description,bool Isdeleted);
+public record MovieCreateDto(string Title,string Description,bool Isdeleted, int GenreId);
 
 public class MovieCreateDtoValidator : AbstractValidator<MovieCreateDto>
 {
@@ -18,6 +18,8 @@ public class MovieCreateDtoValidator : AbstractValidator<MovieCreateDto>
             .MaximumLength(800).WithMessage("Maximum length must be 800");
        
         RuleFor(x => x.Isdeleted).NotNull();
+
+        RuleFor(x => x.GenreId).NotNull().NotEmpty();
 
     }
 

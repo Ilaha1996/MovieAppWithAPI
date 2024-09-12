@@ -10,5 +10,9 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
     {
         builder.Property(x => x.Title).IsRequired().HasMaxLength(200);
         builder.Property(x=>x.Description).IsRequired(false).HasMaxLength(800);
+
+        builder.HasOne(x=>x.Genre)
+            .WithMany(x=>x.Movies)
+            .HasForeignKey(x=>x.GenreId).OnDelete(DeleteBehavior.Cascade);
     }
 }

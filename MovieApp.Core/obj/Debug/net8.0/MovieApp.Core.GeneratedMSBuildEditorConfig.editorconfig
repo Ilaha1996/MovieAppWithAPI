@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MovieApp.Core
-build_property.ProjectDir = C:\Users\USER\source\repos\PB201MovieApp\MovieApp.Core\
+build_property.ProjectDir = C:\Users\USER\Desktop\PB201MovieApp\MovieApp.Core\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
