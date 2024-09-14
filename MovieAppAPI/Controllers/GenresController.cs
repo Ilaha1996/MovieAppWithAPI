@@ -39,7 +39,7 @@ namespace MovieApp.API.Controllers
             return Ok();
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute]int id)
         {
             GenreGetDto? dto = null;
@@ -63,7 +63,7 @@ namespace MovieApp.API.Controllers
             return Ok(dto);
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute]int id, [FromBody] GenreUpdateDto dto)
         {
             try

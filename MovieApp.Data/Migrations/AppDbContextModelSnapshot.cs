@@ -70,6 +70,9 @@ namespace MovieApp.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -82,7 +85,41 @@ namespace MovieApp.Data.Migrations
 
                     b.HasIndex("GenreId");
 
+                    b.HasIndex("MovieId");
+
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("MovieApp.Core.Entities.MovieImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieImages");
                 });
 
             modelBuilder.Entity("MovieApp.Core.Entities.Movie", b =>
@@ -93,10 +130,30 @@ namespace MovieApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MovieApp.Core.Entities.Movie", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("MovieId");
+
                     b.Navigation("Genre");
                 });
 
+            modelBuilder.Entity("MovieApp.Core.Entities.MovieImage", b =>
+                {
+                    b.HasOne("MovieApp.Core.Entities.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+                });
+
             modelBuilder.Entity("MovieApp.Core.Entities.Genre", b =>
+                {
+                    b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("MovieApp.Core.Entities.Movie", b =>
                 {
                     b.Navigation("Movies");
                 });

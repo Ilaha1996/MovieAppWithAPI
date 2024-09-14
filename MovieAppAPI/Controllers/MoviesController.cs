@@ -30,7 +30,7 @@ namespace MovieApp.API.Controllers
             MovieGetDto movie = null;
             try
             {
-                await _movieService.CreateAsync(dto);
+               movie = await _movieService.CreateAsync(dto);
             }
             catch (Exception)
             {
@@ -41,7 +41,7 @@ namespace MovieApp.API.Controllers
             return Created(new Uri($"api/movies/{movie.Id}",UriKind.Relative),movie);
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             MovieGetDto dto = null;
@@ -65,7 +65,7 @@ namespace MovieApp.API.Controllers
             return Ok(dto);
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,[FromForm] MovieUpdateDto dto)
         {
             try

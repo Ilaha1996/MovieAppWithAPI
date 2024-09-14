@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace MovieApp.Business.DTOs.MovieDTOs;
 
-public record MovieCreateDto(string Title,string Description,bool Isdeleted, int GenreId);
+public record MovieCreateDto(string Title,string Description,bool Isdeleted, int GenreId, IFormFile Image);
 
 public class MovieCreateDtoValidator : AbstractValidator<MovieCreateDto>
 {
@@ -20,6 +21,13 @@ public class MovieCreateDtoValidator : AbstractValidator<MovieCreateDto>
         RuleFor(x => x.Isdeleted).NotNull();
 
         RuleFor(x => x.GenreId).NotNull().NotEmpty();
+
+        RuleFor(x => x.Image)
+            .Must(x => x.ContentType == "image/png" || x.ContentType == "image/jpeg")
+            .WithMessage("Image content type must be png or jpeg")
+            .Must(x => x.Length < 2 * 1024 * 1024)
+            .WithMessage("Image length must be less than 2 MB");
+
 
     }
 

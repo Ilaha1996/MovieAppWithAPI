@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public Genre Genre { get; set; }
+        public ICollection<MovieImage> MovieImages{ get; set; }
     }
 }

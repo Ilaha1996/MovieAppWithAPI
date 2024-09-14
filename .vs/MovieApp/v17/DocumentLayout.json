@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|c:\\users\\user\\desktop\\pb201movieapp\\movieapp.business\\dtos\\moviedtos\\movieupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|solutionrelative:movieapp.business\\dtos\\moviedtos\\movieupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|c:\\users\\user\\desktop\\pb201movieapp\\movieapp.business\\services\\implementations\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FBCB14D7-BEFA-47F1-9A9F-6CB1DB483B35}|MovieApp.Business\\MovieApp.Business.csproj|solutionrelative:movieapp.business\\services\\implementations\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieApp.API.csproj|c:\\users\\user\\desktop\\pb201movieapp\\movieappapi\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieApp.API.csproj|solutionrelative:movieappapi\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieApp.API.csproj|c:\\users\\user\\desktop\\pb201movieapp\\movieappapi\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA5B919A-4334-40DC-8312-7DC4F04DA22B}|MovieAppAPI\\MovieApp.API.csproj|solutionrelative:movieappapi\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9935ABC6-78AC-4697-BC65-527148F00589}|MovieApp.Core\\MovieApp.Core.csproj|c:\\users\\user\\desktop\\pb201movieapp\\movieapp.core\\entities\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9935ABC6-78AC-4697-BC65-527148F00589}|MovieApp.Core\\MovieApp.Core.csproj|solutionrelative:movieapp.core\\entities\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,41 +31,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MovieService.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
-              "RelativeDocumentMoniker": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
-              "RelativeToolTip": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAuwBcAAAAVAAAA",
+              "Title": "MovieUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\DTOs\\MovieDTOs\\MovieUpdateDto.cs",
+              "RelativeDocumentMoniker": "MovieApp.Business\\DTOs\\MovieDTOs\\MovieUpdateDto.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\DTOs\\MovieDTOs\\MovieUpdateDto.cs",
+              "RelativeToolTip": "MovieApp.Business\\DTOs\\MovieDTOs\\MovieUpdateDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T08:22:58.265Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MoviesController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\Controllers\\MoviesController.cs",
-              "RelativeDocumentMoniker": "MovieAppAPI\\Controllers\\MoviesController.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\Controllers\\MoviesController.cs",
-              "RelativeToolTip": "MovieAppAPI\\Controllers\\MoviesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T07:18:03.075Z",
+              "WhenOpened": "2024-09-12T19:21:29.72Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GenresController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\Controllers\\GenresController.cs",
-              "RelativeDocumentMoniker": "MovieAppAPI\\Controllers\\GenresController.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\Controllers\\GenresController.cs",
-              "RelativeToolTip": "MovieAppAPI\\Controllers\\GenresController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAmwDUAAAArAAAA",
+              "Title": "Movie.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Core\\Entities\\Movie.cs",
+              "RelativeDocumentMoniker": "MovieApp.Core\\Entities\\Movie.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Core\\Entities\\Movie.cs",
+              "RelativeToolTip": "MovieApp.Core\\Entities\\Movie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T07:16:14.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T19:10:26.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "RelativeDocumentMoniker": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "RelativeToolTip": "MovieApp.Business\\Services\\Implementations\\MovieService.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAIMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T18:44:29.738Z"
             }
           ]
         }

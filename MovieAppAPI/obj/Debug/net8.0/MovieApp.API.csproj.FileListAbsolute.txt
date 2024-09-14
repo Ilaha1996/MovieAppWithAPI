@@ -293,3 +293,4 @@ C:\Users\USER\Desktop\PB201MovieApp\MovieAppAPI\obj\Debug\net8.0\refint\MovieApp
 C:\Users\USER\Desktop\PB201MovieApp\MovieAppAPI\obj\Debug\net8.0\MovieApp.API.pdb
 C:\Users\USER\Desktop\PB201MovieApp\MovieAppAPI\obj\Debug\net8.0\MovieApp.API.genruntimeconfig.cache
 C:\Users\USER\Desktop\PB201MovieApp\MovieAppAPI\obj\Debug\net8.0\ref\MovieApp.API.dll
+C:\Users\USER\Desktop\PB201MovieApp\MovieAppAPI\bin\Debug\net8.0\MovieApp.API.staticwebassets.runtime.json
