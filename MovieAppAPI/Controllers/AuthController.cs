@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieApp.Business.DTOs.TokenDTOs;
 using MovieApp.Business.DTOs.UserDTOs;
 using MovieApp.Business.Services.Interfaces;
 
@@ -36,9 +37,10 @@ namespace MovieApp.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(UserLoginDto dto)
         {
+            TokenResponseDto data = null;
             try
             {
-                await _authService.Login(dto);
+               data = await _authService.Login(dto);
             }
             catch (NullReferenceException)
             {
@@ -48,7 +50,7 @@ namespace MovieApp.API.Controllers
             {
                 return BadRequest();
             }
-            return Ok();
+            return Ok(data);
         }
 
         //[HttpGet]

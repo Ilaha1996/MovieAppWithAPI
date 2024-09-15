@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.DTOs.MovieDTOs;
 using MovieApp.Business.Exceptions.CommonExceptions;
@@ -24,6 +25,7 @@ namespace MovieApp.API.Controllers
             return Ok(await _movieService.GetByExpressionAsync(null,true, "Genre","MovieImages"));
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] MovieCreateDto dto)
         {
@@ -65,6 +67,7 @@ namespace MovieApp.API.Controllers
             return Ok(dto);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,[FromForm] MovieUpdateDto dto)
         {
@@ -88,7 +91,8 @@ namespace MovieApp.API.Controllers
             return NoContent();
 
         }
-
+        
+        [Authorize(Roles ="SuperAdmin,Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

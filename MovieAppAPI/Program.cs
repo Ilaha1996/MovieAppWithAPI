@@ -1,11 +1,14 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using MovieApp.Business;
 using MovieApp.Business.DTOs.MovieDTOs;
 using MovieApp.Business.MappingProfiles;
 using MovieApp.Core.Entities;
 using MovieApp.Data;
 using MovieApp.Data.DAL;
+using System.Text;
 namespace MovieAppAPI
 {
     public class Program
@@ -39,6 +42,25 @@ namespace MovieAppAPI
                 opt.AddProfile<MapProfile>();
             });
 
+
+            builder.Services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidIssuer = "https://localhost:7006/",
+                    ValidAudience = "https://localhost:7006/",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aba72807-29ef-4322-af8b-a69906cdba01Agalar")),
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddRepos(builder.Configuration.GetConnectionString("default"));
             builder.Services.AddServices();

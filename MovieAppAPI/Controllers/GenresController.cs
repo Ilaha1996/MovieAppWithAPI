@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.DTOs.GenreDTOs;
 using MovieApp.Business.Exceptions.CommonExceptions;
 using MovieApp.Business.Services.Interfaces;
@@ -22,6 +23,7 @@ namespace MovieApp.API.Controllers
             return Ok(await _genreService.GetByExpressionAsync(null, true));
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] GenreCreateDto dto)
         {
@@ -63,6 +65,7 @@ namespace MovieApp.API.Controllers
             return Ok(dto);
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute]int id, [FromBody] GenreUpdateDto dto)
         {
@@ -85,7 +88,8 @@ namespace MovieApp.API.Controllers
 
             return NoContent();
         }
-
+        
+        [Authorize(Roles = "SuperAdmin,Admin")]
         [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
