@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DRBibxhqSGQT/N6IxfdiTAKkyhRQdMN9QpTAQr3FrY0=",
+  "Hash": "1JngAdyAZ0866scF+kAjvML1rb4zPsPI3aGEY24V+jc=",
   "Source": "MovieApp.API",
   "BasePath": "_content/MovieApp.API",
   "Mode": "Default",
@@ -15,25 +15,5 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [
-    {
-      "Identity": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\wwwroot\\uploads\\b6ad1a92-6aec-4778-8441-1581176ee31bpromo-banner-small.jpg",
-      "SourceId": "MovieApp.API",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Desktop\\PB201MovieApp\\MovieAppAPI\\wwwroot\\",
-      "BasePath": "_content/MovieApp.API",
-      "RelativePath": "uploads/b6ad1a92-6aec-4778-8441-1581176ee31bpromo-banner-small.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\b6ad1a92-6aec-4778-8441-1581176ee31bpromo-banner-small.jpg"
-    }
-  ]
+  "Assets": []
 }

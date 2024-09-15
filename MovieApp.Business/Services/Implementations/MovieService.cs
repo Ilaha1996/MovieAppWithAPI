@@ -64,12 +64,19 @@ public class MovieService : IMovieService
     public async Task DeleteAsync(int id)
     {
         if (id < 1) throw new NotValidIdException();
-        var data = await _movieRepo.GetByIdAsync(id);
+        var data = await _movieRepo.GetByExpressionAsync(x => x.Id == id, false, "Genre", "MovieImages").FirstOrDefaultAsync();
         if (data == null) throw new EntityNotFoundException(404, "Not Found");
+
+        foreach (var image in data.MovieImages.ToList())
+        {
+            FileManager.DeleteFile(_env.WebRootPath, "uploads", image.ImageUrl);  
+            data.MovieImages.Remove(image);
+        }
+
+
         _movieRepo.DeleteAsync(data);
         await _movieRepo.CommitAsync();
     }
-
     public async Task<ICollection<MovieGetDto>> GetByExpressionAsync(Expression<Func<Movie, bool>>? expression = null, bool asNoTracking = false, params string[] includes)
     {
         var datas = await _movieRepo.GetByExpressionAsync(expression, asNoTracking, includes).ToListAsync();
@@ -91,7 +98,6 @@ public class MovieService : IMovieService
 
         return dto;
     }
-
     public async Task<MovieGetDto> GetSingleByExpressionAsync(Expression<Func<Movie, bool>>? expression = null, bool asNoTracking = false, params string[] includes)
     {
         var data = await _movieRepo.GetByExpressionAsync(expression, asNoTracking, includes).FirstOrDefaultAsync();
@@ -101,7 +107,6 @@ public class MovieService : IMovieService
 
         return dto;
     }
-
     public async Task UpdateAsync(int? id, MovieUpdateDto dto)
     {
         if (!await _genreService.IsExistAsync(x => x.Id == dto.GenreId && x.IsDeleted == false)) throw new EntityNotFoundException();

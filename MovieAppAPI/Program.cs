@@ -1,8 +1,11 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using MovieApp.Business;
 using MovieApp.Business.DTOs.MovieDTOs;
 using MovieApp.Business.MappingProfiles;
+using MovieApp.Core.Entities;
 using MovieApp.Data;
+using MovieApp.Data.DAL;
 namespace MovieAppAPI
 {
     public class Program
@@ -18,10 +21,24 @@ namespace MovieAppAPI
                 opt.RegisterValidatorsFromAssembly(typeof(MovieCreateDtoValidator).Assembly);
             });
 
+            builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredUniqueChars = 2;
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireUppercase = true;
+                opt.Password.RequireNonAlphanumeric = true;
+                opt.Password.RequiredLength = 8;
+
+                opt.User.RequireUniqueEmail = true;
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             builder.Services.AddAutoMapper(opt =>
             {
                 opt.AddProfile<MapProfile>();
             });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddRepos(builder.Configuration.GetConnectionString("default"));
             builder.Services.AddServices();
@@ -37,6 +54,7 @@ namespace MovieAppAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

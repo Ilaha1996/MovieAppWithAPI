@@ -21,7 +21,7 @@ namespace MovieApp.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _movieService.GetByExpressionAsync(null,true, "Genre"));
+            return Ok(await _movieService.GetByExpressionAsync(null,true, "Genre","MovieImages"));
         }
 
         [HttpPost]
@@ -47,7 +47,7 @@ namespace MovieApp.API.Controllers
             MovieGetDto dto = null;
             try
             {
-                dto = await _movieService.GetByIdAsync(id);
+                dto = await _movieService.GetSingleByExpressionAsync(x=>x.Id==id,false,"Genre","MovieImages");
             }
             catch (NotValidIdException)
             {
@@ -89,7 +89,7 @@ namespace MovieApp.API.Controllers
 
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
