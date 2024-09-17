@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MovieApp.API.APIResponses;
 using MovieApp.Business.DTOs.GenreDTOs;
 using MovieApp.Business.Exceptions.CommonExceptions;
+using MovieApp.Business.Exceptions.GenreExceptions;
 using MovieApp.Business.Services.Interfaces;
 
 namespace MovieApp.API.Controllers
@@ -23,7 +25,7 @@ namespace MovieApp.API.Controllers
             return Ok(await _genreService.GetByExpressionAsync(null, true));
         }
 
-        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] GenreCreateDto dto)
         {
@@ -32,13 +34,32 @@ namespace MovieApp.API.Controllers
             {
                 await _genreService.CreateAsync(dto);
             }
-            catch (Exception)
+            catch(GenreAlreadyExistException ex)
+            {
+                return BadRequest(new ApiResponse<GenreCreateDto>
+                {
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
+            }
+            catch (Exception ex)
             {
 
-                return BadRequest();
+                return BadRequest(new ApiResponse<GenreCreateDto>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
-            return Ok();
+            return Ok(new ApiResponse<GenreCreateDto>
+            {
+                Data = null,
+                StatusCode = StatusCodes.Status200OK,
+                ErrorMessage = null
+            });
         }
 
         [HttpGet("{id}")]
@@ -49,20 +70,40 @@ namespace MovieApp.API.Controllers
             {
                 dto = await _genreService.GetByIdAsync(id);
             }
-            catch (NotValidIdException)
+            catch (NotValidIdException ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<GenreGetDto> 
+                { 
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null                
+                });
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(new ApiResponse<GenreGetDto>
+                {
+                    StatusCode= StatusCodes.Status404NotFound,
+                    ErrorMessage = "Entity not found",
+                    Data = null
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<GenreGetDto>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
-            return Ok(dto);
+            return Ok(new ApiResponse<GenreGetDto>
+            {
+                Data = dto,
+                StatusCode = StatusCodes.Status200OK,
+                ErrorMessage = null
+            });
         }
 
         [Authorize(Roles = "SuperAdmin,Admin,Editor")]
