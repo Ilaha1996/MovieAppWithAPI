@@ -70,5 +70,19 @@ namespace MovieApp.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var request = new RestRequest($"Genres/{id}", Method.Delete);
+            var response = await _restClient.ExecuteAsync<ApiResponseMessage<GenreGetVM>>(request);
+
+            if (!response.IsSuccessful)
+            {
+                ViewBag.Err = response.Data.ErrorMessage;
+                return View();
+            }            
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

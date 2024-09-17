@@ -130,7 +130,7 @@ namespace MovieApp.API.Controllers
             return NoContent();
         }
         
-        [Authorize(Roles = "SuperAdmin,Admin")]
+       // [Authorize(Roles = "SuperAdmin,Admin")]
         [HttpDelete("id")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -138,20 +138,39 @@ namespace MovieApp.API.Controllers
             {
                 await _genreService.DeleteAsync(id);
             }
-            catch (NotValidIdException)
+            catch (NotValidIdException ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<GenreGetDto>
+                {
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(new ApiResponse<GenreGetDto>
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    ErrorMessage = "Entity not found",
+                    Data = null
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<GenreGetDto>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
-            return Ok();
+            return Ok(new ApiResponse<GenreGetDto>
+            {
+                ErrorMessage = null,
+                Data = null 
+            });
 
         }
     }
