@@ -54,9 +54,9 @@ namespace MovieAppAPI
                 {
                     ValidateAudience = true,
                     ValidateIssuer = true,
-                    ValidIssuer = "https://localhost:7006/",
-                    ValidAudience = "https://localhost:7006/",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aba72807-29ef-4322-af8b-a69906cdba01Agalar")),
+                    ValidIssuer = builder.Configuration.GetSection("JWT:issuer").Value,
+                    ValidAudience = builder.Configuration.GetSection("JWT:audience").Value,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JWT:secretKey").Value)),
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 };

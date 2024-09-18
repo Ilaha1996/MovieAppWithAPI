@@ -17,7 +17,7 @@ namespace MovieApp.MVC.Controllers
         {
             var request = new RestRequest("Genres", Method.Get);
             //var response = await _restClient.ExecuteAsync(request);
-            var response = await _restClient.ExecuteAsync<List<GenreGetVM>>(request);
+            var response = await _restClient.ExecuteAsync<ApiResponseMessage<List<GenreGetVM>>>(request);
 
             if (!response.IsSuccessful) 
             {
@@ -26,7 +26,7 @@ namespace MovieApp.MVC.Controllers
             }
 
             //List<GenreGetVM> vm = JsonSerializer.Deserialize<List<GenreGetVM>>(response.Content, new JsonSerializerOptions {PropertyNameCaseInsensitive = true }); - response-dan vm e kecidin diger uzun yolu,asagidaki qisa yoludur.
-            List<GenreGetVM> vm = response.Data;
+            List<GenreGetVM> vm = response.Data.Data;
 
             return View(vm);
         }
@@ -77,12 +77,48 @@ namespace MovieApp.MVC.Controllers
 
             if (!response.IsSuccessful)
             {
-                ViewBag.Err = response.Data.ErrorMessage;
+                TempData["Err"] = response.Data.ErrorMessage;
                 return View();
             }            
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var request = new RestRequest($"Genres/{id}", Method.Get);
+            var response = await _restClient.ExecuteAsync<ApiResponseMessage<GenreGetVM>>(request);
+
+            if (!response.IsSuccessful)
+            {
+                TempData["Err"] = response.Data.ErrorMessage;
+                return View();
+            }
+
+            GenreUpdateVM vm = new GenreUpdateVM(response.Data.Data.Name,response.Data.Data.IsDeleted);
+
+            return View(vm);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, GenreUpdateVM vm)
+        {
+            var request = new RestRequest($"Genres/{id}", Method.Put);
+            request.AddJsonBody(vm);
+
+            var response = await _restClient.ExecuteAsync<ApiResponseMessage<object>>(request);
+           
+            if (!response.IsSuccessful)
+            {
+                ModelState.AddModelError(response.Data.PropertyName, response.Data.ErrorMessage);
+                return View();
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
 
     }
 }

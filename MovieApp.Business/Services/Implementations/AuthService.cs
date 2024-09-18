@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MovieApp.Business.DTOs.TokenDTOs;
 using MovieApp.Business.DTOs.UserDTOs;
@@ -15,12 +16,14 @@ public class AuthService : IAuthService
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IConfiguration _configuration;
 
-    public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+    public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager,IConfiguration configuration)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _roleManager = roleManager;
+        _configuration = configuration;
     }
     public async Task<TokenResponseDto> Login(UserLoginDto dto)
     {
@@ -48,7 +51,7 @@ public class AuthService : IAuthService
         };
         
         claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role,role)));
-        string secretKey = "aba72807-29ef-4322-af8b-a69906cdba01Agalar";
+        string secretKey = _configuration.GetSection("JWT:secretKey").Value;
         DateTime expiredDate = DateTime.UtcNow.AddMinutes(2);
 
 
@@ -58,8 +61,8 @@ public class AuthService : IAuthService
         JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
             signingCredentials : signingCredentials,
             claims : claims,
-            audience: "https://localhost:7006/",
-            issuer: "https://localhost:7006/",
+            audience: _configuration.GetSection("JWT:audience").Value,
+            issuer: _configuration.GetSection("JWT:issuer").Value,
             expires: expiredDate,
             notBefore: DateTime.UtcNow);
 

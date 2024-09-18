@@ -229,6 +229,43 @@ namespace MovieApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MovieApp.Core.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("MovieApp.Core.Entities.Genre", b =>
                 {
                     b.Property<int>("Id")
@@ -386,6 +423,25 @@ namespace MovieApp.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MovieApp.Core.Entities.Comment", b =>
+                {
+                    b.HasOne("MovieApp.Core.Entities.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MovieApp.Core.Entities.Movie", "Movie")
+                        .WithMany("Comments")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Movie");
+                });
+
             modelBuilder.Entity("MovieApp.Core.Entities.Movie", b =>
                 {
                     b.HasOne("MovieApp.Core.Entities.Genre", "Genre")
@@ -415,7 +471,14 @@ namespace MovieApp.Data.Migrations
 
             modelBuilder.Entity("MovieApp.Core.Entities.Movie", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("MovieImages");
+                });
+
+            modelBuilder.Entity("MovieApp.Core.Entities.AppUser", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

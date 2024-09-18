@@ -1,0 +1,37 @@
+﻿@using MovieApp.MVC.ViewModels.MovieVM
+@model List<MovieGetVM>
+
+<div class="container">
+    <div>
+        <h1>Movie Index</h1>
+        <a>Create</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Genre Name</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var item in Model)
+           {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@item.Title</td>
+                    <td>@item.GenreName</td>
+                    <td>@item.CreatedDate</td>
+                    <td><img style="width:150px" src="https://localhost:7006/uploads/@item.MovieImages.FirstOrDefault()?.ImageUrl" /></td>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary" >Update</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+           }           
+        </tbody>
+    </table>
+</div>

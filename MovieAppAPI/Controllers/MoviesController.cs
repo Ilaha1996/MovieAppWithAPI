@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MovieApp.API.APIResponses;
 using MovieApp.Business.DTOs.MovieDTOs;
 using MovieApp.Business.Exceptions.CommonExceptions;
 using MovieApp.Business.Services.Interfaces;
-using MovieApp.Core.Entities;
 
 namespace MovieApp.API.Controllers
 {
@@ -22,10 +20,17 @@ namespace MovieApp.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _movieService.GetByExpressionAsync(null,true, "Genre","MovieImages"));
+            return Ok(new ApiResponse<ICollection<MovieGetDto>>
+            {
+                Data = await _movieService.GetByExpressionAsync(null, true, "Genre", "MovieImages", "Comments.AppUser"),
+                ErrorMessage = null,
+                PropertyName = null,
+                StatusCode = StatusCodes.Status200OK
+
+            });
         }
 
-        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] MovieCreateDto dto)
         {
@@ -34,13 +39,17 @@ namespace MovieApp.API.Controllers
             {
                movie = await _movieService.CreateAsync(dto);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                return BadRequest();
+                return BadRequest(new ApiResponse<object>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
-            return Created(new Uri($"api/movies/{movie.Id}",UriKind.Relative),movie);
+            return Created();
         }
 
         [HttpGet("{id}")]
@@ -49,25 +58,47 @@ namespace MovieApp.API.Controllers
             MovieGetDto dto = null;
             try
             {
-                dto = await _movieService.GetSingleByExpressionAsync(x=>x.Id==id,false,"Genre","MovieImages");
+                dto = await _movieService.GetSingleByExpressionAsync(x=>x.Id==id,false,"Genre","MovieImages", "Comments.AppUser");
             }
-            catch (NotValidIdException)
+            catch (NotValidIdException ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<MovieGetDto>
+                {
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException ex)
             {
-                return NotFound();               
+                return NotFound(new ApiResponse<MovieGetDto>
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    ErrorMessage = "Entity not found",
+                    Data = null
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<MovieGetDto>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
-            return Ok(dto);
+            return Ok(new ApiResponse<MovieGetDto>
+            {
+                Data = dto,
+                StatusCode = StatusCodes.Status200OK,
+                ErrorMessage = null
+            });
+
+            
         }
 
-        [Authorize(Roles = "SuperAdmin,Admin,Editor")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Editor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,[FromForm] MovieUpdateDto dto)
         {
@@ -75,24 +106,38 @@ namespace MovieApp.API.Controllers
             {
                 await _movieService.UpdateAsync(id, dto);
             }
-            catch (NotValidIdException)
+            catch (NotValidIdException ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<MovieUpdateDto>
+                {
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(new ApiResponse<MovieUpdateDto>
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    ErrorMessage = "Entity not found",
+                    Data = null
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<MovieUpdateDto>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
 
             return NoContent();
-
         }
         
-        [Authorize(Roles ="SuperAdmin,Admin")]
+        //[Authorize(Roles ="SuperAdmin,Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -100,22 +145,39 @@ namespace MovieApp.API.Controllers
             {
                 await _movieService.DeleteAsync(id);
             }
-            catch (NotValidIdException)
+            catch (NotValidIdException ex)
             {
-                return BadRequest();
+                return BadRequest(new ApiResponse<object>
+                {
+                    StatusCode = ex.StatusCode,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException ex)
             {
-                return NotFound();
+                return NotFound(new ApiResponse<object>
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    ErrorMessage = "Entity not found",
+                    Data = null
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
-            }
+                return BadRequest(new ApiResponse<object>
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    ErrorMessage = ex.Message,
+                    Data = null
+                });
+            }       
 
             return Ok();
 
         }
+
+
 
     }
 }

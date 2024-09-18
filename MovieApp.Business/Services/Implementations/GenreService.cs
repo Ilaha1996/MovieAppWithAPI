@@ -41,7 +41,7 @@ public class GenreService : IGenreService
 
         var data = await _genreRepo.GetByIdAsync(id);
 
-        if(data == null) throw new EntityNotFoundException();
+        if(data == null) throw new EntityNotFoundException(404, "Genre not found");
 
         _genreRepo.DeleteAsync(data);
         await _genreRepo.CommitAsync();
@@ -80,6 +80,11 @@ public class GenreService : IGenreService
     public async Task UpdateAsync(int? id, GenreUpdateDto dto)
     {
         if (id < 1) throw new NotValidIdException();
+
+        if (await _genreRepo.Table.AnyAsync(x => x.Name.Trim().ToLower() == dto.Name.Trim().ToLower()))
+        {
+            throw new GenreAlreadyExistException(StatusCodes.Status400BadRequest, "Name", "Genre already exists");
+        }
 
         var data = await _genreRepo.GetByIdAsync(id.Value);
 

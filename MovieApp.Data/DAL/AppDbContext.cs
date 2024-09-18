@@ -13,6 +13,7 @@ public class AppDbContext:IdentityDbContext
     public DbSet<MovieImage> MovieImages { get; set; }
     public DbSet<Genre> Genres { get; set; }
     public DbSet<AppUser> Users { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

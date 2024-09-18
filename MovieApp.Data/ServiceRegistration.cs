@@ -13,6 +13,7 @@ public static class ServiceRegistration
     {
         services.AddScoped<IMovieRepo, MovieRepo>();
         services.AddScoped<IGenreRepo, GenreRepo>();
+        services.AddScoped<ICommentRepo, CommentRepo>();
 
 
         services.AddDbContext<AppDbContext>(opt =>

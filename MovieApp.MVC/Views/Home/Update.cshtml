@@ -1,0 +1,10 @@
+﻿@using MovieApp.MVC.ViewModels.GenreVM
+@model GenreUpdateVM
+
+<form method="post">
+    <input asp-for="Name" />
+    <span asp-validation-for="Name" style="color:red"></span>
+    <input name="id" value="@ViewContext.RouteData.Values["id"]"/>
+    <button type="submit">Update</button>
+    <a asp-action="index" class="btn btn-primary">Cancel</a>
+</form>
